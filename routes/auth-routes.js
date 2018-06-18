@@ -80,4 +80,10 @@ authRoutes.get("/profile", ensureLoggedIn(), (req, res) => {
   });
 });
 
+authRoutes.get("/auth/facebook", passport.authenticate("facebook",  { scope: ['email']}));
+authRoutes.get("/auth/facebook/callback", passport.authenticate("facebook", {
+  successRedirect: "/private-page",
+  failureRedirect: "/"
+}));
+
 module.exports = authRoutes;
